@@ -72,13 +72,9 @@ static BOOL LCCKAllLogsEnabled;
     return [[self getFilesPath] stringByAppendingFormat:@"%@.%@", message.messageId, message.format];
 }
 
-- (void)registerForRemoteNotification {
-    [AVOSCloud registerForRemoteNotification];
-}
-
 - (void)saveInstallationWithDeviceToken:(NSData *)deviceToken userId:(NSString *)userId {
     AVInstallation *currentInstallation = [AVInstallation currentInstallation];
-    [currentInstallation setDeviceTokenFromData:deviceToken];
+    [currentInstallation setDeviceTokenFromData:deviceToken teamId:@"PS6N74AGZZ"];
     //FIXME: openClient 的时候也会将 clientId 注册到 channels，这里多余了？
     if (userId) {
         [currentInstallation addUniqueObject:userId forKey:LCCKInstallationKeyChannels];

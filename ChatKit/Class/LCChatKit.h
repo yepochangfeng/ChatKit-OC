@@ -36,6 +36,12 @@
 @property (nonatomic, copy, readonly) NSString *appKey;
 
 /*!
+ *  serverurl
+ */
+@property (nonatomic, copy, readonly) NSString *urlString;
+
+
+/*!
  *
  * @brief Set up application id(appId) and client key(appKey) to start LeanCloud service.
  * @attention 请区别 `[AVOSCloud setApplicationId:appId clientKey:appKey];` 与 `[LCChatKit setAppId:appId appKey:appKey];`。
@@ -44,6 +50,10 @@
               如果你使用了 LeanCloud-SDK 的其他功能，你可能要根据需要，这两个方法都使用到。
  */
 + (void)setAppId:(NSString *)appId appKey:(NSString *)appKey;
+
++ (void)setAppId:(NSString *)appId
+          appKey:(NSString *)appKey
+       urlString:(NSString *)urlString;
 
 /*!
  *  Returns the shared instance of LCChatKit, creating it if necessary.

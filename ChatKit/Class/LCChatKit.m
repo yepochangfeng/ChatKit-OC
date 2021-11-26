@@ -18,6 +18,12 @@
  *  appkey
  */
 @property (nonatomic, copy, readwrite) NSString *appKey;
+
+/*!
+ *  serverurl
+ */
+@property (nonatomic, copy, readwrite) NSString *urlString;
+
 @end
 
 @implementation LCChatKit
@@ -71,6 +77,18 @@
     [AVOSCloud setApplicationId:appId clientKey:appKey];
     [LCChatKit sharedInstance].appId = appId;
     [LCChatKit sharedInstance].appKey = appKey;
+    if ([LCCKSettingService allLogsEnabled]) {
+        LCCKLog(@"ChatKit Version is %@", [LCCKSettingService ChatKitVersion]);
+    }
+}
+
++ (void)setAppId:(NSString *)appId
+          appKey:(NSString *)appKey
+         urlString:(NSString *)urlString {
+    [AVOSCloud setApplicationId:appId clientKey:appKey serverURLString:urlString];
+    [LCChatKit sharedInstance].appId = appId;
+    [LCChatKit sharedInstance].appKey = appKey;
+    [LCChatKit sharedInstance].urlString = urlString;
     if ([LCCKSettingService allLogsEnabled]) {
         LCCKLog(@"ChatKit Version is %@", [LCCKSettingService ChatKitVersion]);
     }
